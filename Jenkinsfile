@@ -14,6 +14,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Build Stage'
+        input 'Do you want build the code?'
       }
     }
     stage('Deploy Dev') {

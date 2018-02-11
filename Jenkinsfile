@@ -2,27 +2,17 @@ pipeline {
   agent any
   stages {
     stage('Check_Out') {
-      parallel {
-        stage('Check_Out') {
-          steps {
-            echo 'Check out code from Jira'
-            git 'https://github.com/srikanthtummala/boggle.git'
-            echo 'Code successfully pull from Git'
-          }
-        }
-        stage('') {
-          steps {
-            git 'https://github.com/srikanthtummala/XMLTransportLayer.git'
-            echo 'Code successfully pull from Git'
-          }
-        }
+      steps {
+        echo 'Check out code from Jira'
+        git 'https://github.com/srikanthtummala/boggle.git'
+        echo 'Code successfully pull from Git'
       }
     }
     stage('Validate') {
       steps {
         input 'Do You want to validate the code?'
         echo 'Code Validation Stage'
-        waitForQualityGate()
+        bat(script: 'S:\\Jenkins\\workspace\\SONAR_QUBE\\build.bat', returnStatus: true, returnStdout: true)
       }
     }
     stage('Build') {

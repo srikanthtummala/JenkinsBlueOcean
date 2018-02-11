@@ -11,9 +11,9 @@ pipeline {
     }
     stage('Validate') {
       steps {
+        input 'Do You want to validate the code?'
         echo 'Code Validation Stage'
         waitForQualityGate()
-        input 'Do You want to validate the code?'
       }
     }
     stage('Build') {

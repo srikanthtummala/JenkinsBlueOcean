@@ -6,11 +6,7 @@ pipeline {
         echo 'Check out code from Jira'
         git 'https://github.com/srikanthtummala/XMLTransportLayer.git'
         git 'https://github.com/srikanthtummala/boggle.git'
-        catchError() {
-          input 'Do you want retry?'
-        }
-        
-        error 'Terminating Job due to check out failure'
+        echo 'Code successfully pull from Git'
       }
     }
     stage('Validate') {

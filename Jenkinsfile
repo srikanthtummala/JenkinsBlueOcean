@@ -2,11 +2,20 @@ pipeline {
   agent any
   stages {
     stage('Check_Out') {
-      steps {
-        echo 'Check out code from Jira'
-        git 'https://github.com/srikanthtummala/XMLTransportLayer.git'
-        git 'https://github.com/srikanthtummala/boggle.git'
-        echo 'Code successfully pull from Git'
+      parallel {
+        stage('Check_Out') {
+          steps {
+            echo 'Check out code from Jira'
+            git 'https://github.com/srikanthtummala/boggle.git'
+            echo 'Code successfully pull from Git'
+          }
+        }
+        stage('') {
+          steps {
+            git 'https://github.com/srikanthtummala/XMLTransportLayer.git'
+            echo 'Code successfully pull from Git'
+          }
+        }
       }
     }
     stage('Validate') {

@@ -4,12 +4,13 @@ pipeline {
     stage('Check_Out') {
       steps {
         echo 'Check out code from Jira'
-        git(url: 'https://github.com/srikanthtummala/XMLTransportLayer.git', branch: 'master', changelog: true, credentialsId: 'srikanthtummala', poll: true)
-        git(url: 'https://github.com/srikanthtummala/boggle.git', branch: 'master', credentialsId: 'srikanthtummala')
+        git 'https://github.com/srikanthtummala/XMLTransportLayer.git'
+        git 'https://github.com/srikanthtummala/boggle.git'
         catchError() {
           input 'Do you want retry?'
         }
         
+        error 'Terminating Job due to check out failure'
       }
     }
     stage('Validate') {

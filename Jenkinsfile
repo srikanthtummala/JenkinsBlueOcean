@@ -12,8 +12,8 @@ pipeline {
       steps {
         input 'Do You want to validate the code?'
         echo 'Code Validation Stage'
-        bat(script: 'cd S:\\Jenkins\\workspace\\SONAR_QUBE', returnStatus: true, returnStdout: true)
-        bat(script: 'mvn clean compile package install test', returnStatus: true, returnStdout: true)
+        bat 'cd S:\\Jenkins\\workspace\\SONAR_QUBE'
+        bat 'mvn clean compile package install test'
         bat(script: 'cd S:\\Jenkins\\workspace\\SONAR_QUBE', returnStatus: true, returnStdout: true)
         bat(script: 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=311954254f6974e9c94576fc76b0e08b07beeb5e', returnStatus: true, returnStdout: true)
       }
